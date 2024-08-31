@@ -109,31 +109,40 @@ gamesCard.innerHTML = `<p>${GAMES_JSON.length}</p>`;
 function filterUnfundedOnly() {
     deleteChildElements(gamesContainer);
 
+
     // use filter() to get a list of games that have not yet met their goal
+    let notEnough = GAMES_JSON.filter(game => game.pledged < game.goal);
 
-
-    // use the function we previously created to add the unfunded games to the DOM
+    console.log(notEnough);
+    
+    // call the function we just defined using the correct variable
+    addGamesToPage(notEnough);
 
 }
+
+filterUnfundedOnly();
+
 
 // show only games that are fully funded
 function filterFundedOnly() {
     deleteChildElements(gamesContainer);
 
     // use filter() to get a list of games that have met or exceeded their goal
-
+    let exceeded = GAMES_JSON.filter(game => game.pledged >= game.goal);
 
     // use the function we previously created to add unfunded games to the DOM
-
+    addGamesToPage(exceeded);
 }
+filterFundedOnly();
 
 // show all games
 function showAllGames() {
     deleteChildElements(gamesContainer);
 
     // add all games from the JSON data to the DOM
-
+    addGamesToPage(GAMES_JSON);
 }
+showAllGames()
 
 // select each button in the "Our Games" section
 const unfundedBtn = document.getElementById("unfunded-btn");
@@ -141,7 +150,9 @@ const fundedBtn = document.getElementById("funded-btn");
 const allBtn = document.getElementById("all-btn");
 
 // add event listeners with the correct functions to each button
-
+unfundedBtn.addEventListener("click", filterUnfundedOnly);
+fundedBtn.addEventListener("click", filterFundedOnly);
+allBtn.addEventListener("click", showAllGames);
 
 /*************************************************************************************
  * Challenge 6: Add more information at the top of the page about the company.
@@ -152,12 +163,24 @@ const allBtn = document.getElementById("all-btn");
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
-
+let countUnfunded = GAMES_JSON.filter(game => game.pledged < game.goal);
+let totalCount = countUnfunded.length;
 
 // create a string that explains the number of unfunded games using the ternary operator
-
+let explainUnfiltered = `The total number of unfiltered games is: ${totalCount > 0 ? totalCount : "None"}`;
+descriptionContainer.innerHTML = explainUnfiltered;
 
 // create a new DOM element containing the template string and append it to the description container
+let words = `<p>A total of $${totalRaised.toLocaleString('en-US')} has been raised for ${GAMES_JSON.length} games. Currently,
+                                    ${totalCount > 0 ? totalCount : "None"} games remain unfunded. We need your help to fund these
+                                    amazing games!
+                                    </p>`;
+descriptionContainer.innerHTML = `<p>The purpose of our company is to fund independent games. We've been in operation for 12 years.
+                                    </p>
+                                    <p>
+                                    ${words}
+                                    </p>
+                                    `;
 
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
