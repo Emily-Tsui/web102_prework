@@ -24,7 +24,7 @@ The following **optional** features are implemented:
 Here's a walkthrough of implemented features:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/SS8dwRL"  ><a href="//imgur.com/a/SS8dwRL">GameStats Walkthrough</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/SS8dwRL"  ><a href="//imgur.com/a/SS8dwRL">GameStats Walkthrough</a></blockquote>
 
 
 GIF created with Licecap for macOS.
